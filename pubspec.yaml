@@ -1,0 +1,40 @@
+name: eduvise
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.8
+  onboarding: ^3.1.0
+  smooth_page_indicator: ^1.1.0
+  google_fonts: ^6.1.0
+  flutter_native_splash: ^2.3.4
+
+flutter_native_splash:
+  color: "#088395"
+  image: assets/images/logo.png
+
+  android_12:
+    image: assets/images/logo.png
+    icon_background_color: "#088395"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+   - assets/images/
