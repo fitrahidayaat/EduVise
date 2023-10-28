@@ -2,6 +2,7 @@ import 'package:eduvise/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:eduvise/src/features/authentication/screens/welcome/welcome_screen.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -121,11 +122,11 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               ),
               onPressed: () async {
-                // Navigator.of(context).pushReplacement(
-                //   MaterialPageRoute(
-                //     // builder: (context) => const LoginPage(),
-                //   ),
-                // );
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const WelcomeScreen(),
+                  ),
+                );
               },
             )
           : Container(

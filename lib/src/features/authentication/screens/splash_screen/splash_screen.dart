@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future startAnimation() async {
     await Future.delayed(const Duration(milliseconds: 500));
     setState(() => animate = true);
-    await Future.delayed(const Duration(milliseconds: 1600));
+    await Future.delayed(const Duration(milliseconds: 3000));
     //ignore: use_build_context_synchronously
     Navigator.pushReplacement(
       context,
