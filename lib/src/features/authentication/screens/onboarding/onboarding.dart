@@ -1,10 +1,13 @@
 import 'package:eduvise/src/constants/colors.dart';
+import 'package:eduvise/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:eduvise/src/features/authentication/screens/welcome/welcome_screen.dart';
 
 class Onboarding extends StatefulWidget {
+  const Onboarding({super.key});
+
   @override
   State<Onboarding> createState() => _OnboardingState();
 }
@@ -16,7 +19,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(bottom: 80),
+        padding: const EdgeInsets.only(bottom: 60),
         child: PageView(
           controller: controller,
           onPageChanged: (index) {
@@ -27,23 +30,39 @@ class _OnboardingState extends State<Onboarding> {
               children: [
                 const SizedBox(height: 100),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 75, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(
+                    tDefaultSize,
+                    50,
+                    tDefaultSize,
+                    tDefaultSize,
+                  ),
                   child: Image.asset(
                     "assets/images/onboarding1.png",
                     height: 250,
                   ),
                 ),
                 const SizedBox(height: 50),
-                Text(
-                  "Welcome to EduVise",
-                  style: Theme.of(context).textTheme.titleLarge,
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: tDefaultSize,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    "Welcome to EduVise",
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  "Begin your academic journey with Eduvise, your trusted learning companion.",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: tDefaultSize,
+                  ),
+                  child: Text(
+                    "Begin your academic journey with Eduvise, your trusted learning companion.",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
               ],
             ),
@@ -51,21 +70,32 @@ class _OnboardingState extends State<Onboarding> {
               children: [
                 const SizedBox(height: 100),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 75, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(
+                    tDefaultSize,
+                    50,
+                    tDefaultSize,
+                    tDefaultSize,
+                  ),
                   child: Image.asset(
                     "assets/images/onboarding2.png",
                     height: 250,
                   ),
                 ),
                 const SizedBox(height: 50),
-                Text(
-                  "Customized Learning Support",
-                  style: Theme.of(context).textTheme.titleLarge,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: tDefaultSize,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    "Customized Learning Support",
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: tDefaultSize),
                   child: Text(
                     "Tailor your study approach using Eduvise's chatbot, forums, and study plans..",
                     textAlign: TextAlign.center,
@@ -78,21 +108,32 @@ class _OnboardingState extends State<Onboarding> {
               children: [
                 const SizedBox(height: 100),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 75, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(
+                    tDefaultSize,
+                    50,
+                    tDefaultSize,
+                    tDefaultSize,
+                  ),
                   child: Image.asset(
                     "assets/images/onboarding3.png",
                     height: 250,
                   ),
                 ),
                 const SizedBox(height: 50),
-                Text(
-                  "Join Our Learning Community",
-                  style: Theme.of(context).textTheme.titleLarge,
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: tDefaultSize,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    "Join Our Learning Community",
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: tDefaultSize),
                   child: Text(
                     "Join our learning community for support and inspiration. Get started with Eduvise today!",
                     textAlign: TextAlign.center,
@@ -112,13 +153,13 @@ class _OnboardingState extends State<Onboarding> {
                 ),
                 foregroundColor: Colors.white,
                 backgroundColor: tPrimaryColor,
-                minimumSize: const Size.fromHeight(80),
+                minimumSize: const Size.fromHeight(60),
               ),
               child: Text(
                 'Get Started',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
               onPressed: () async {

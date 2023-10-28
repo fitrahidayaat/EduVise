@@ -11,13 +11,14 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: tWhiteColor,
       body: Container(
-        padding: EdgeInsets.all(tDefaultSize),
+        padding: const EdgeInsets.all(tDefaultSize),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image(
-              image: AssetImage(tWelcomeScreen),
+              image: const AssetImage(tWelcomeScreen),
               height: 0.6 * height,
             ),
             Column(
@@ -39,31 +40,31 @@ class WelcomeScreen extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(),
+                      shape: const RoundedRectangleBorder(),
                       foregroundColor: tSecondaryColor,
-                      side: BorderSide(
+                      side: const BorderSide(
                         color: tSecondaryColor,
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 14),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     child: Text(
                       tLogin.toUpperCase(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      shape: RoundedRectangleBorder(),
+                      shape: const RoundedRectangleBorder(),
                       foregroundColor: tWhiteColor,
                       backgroundColor: tSecondaryColor,
-                      side: BorderSide(
+                      side: const BorderSide(
                         color: tSecondaryColor,
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 14),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     child: Text(
                       tSignUp.toUpperCase(),
