@@ -3,6 +3,7 @@ import 'package:eduvise/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/image_strings.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
+import 'package:eduvise/src/features/authentication/screens/login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -38,7 +39,11 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    ),
                     style: OutlinedButton.styleFrom(
                       shape: const RoundedRectangleBorder(),
                       foregroundColor: tSecondaryColor,

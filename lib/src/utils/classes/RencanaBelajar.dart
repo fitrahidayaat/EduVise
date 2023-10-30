@@ -1,26 +1,28 @@
-class RencanaBelajar{
+class RencanaBelajar {
   late String title;
   late String schedule;
   late bool marked = false;
 
-  void setTitle(String title){
+  // constructor
+  RencanaBelajar({required this.title, required this.schedule});
+
+  void setTitle(String title) {
     this.title = title;
   }
 
-  void setSchedule(String schedule){
+  void setSchedule(String schedule) {
     this.schedule = schedule;
   }
 
-  String getTitle(){
+  String getTitle() {
     return this.title;
   }
 
-  String getSchedule(){
+  String getSchedule() {
     return this.schedule;
   }
 
-  void checkMarked(){
+  void checkMarked() {
     this.marked = !this.marked;
   }
-
 }
