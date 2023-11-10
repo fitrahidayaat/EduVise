@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:eduvise/src/features/authentication/screens/welcome/welcome_screen.dart';
+import 'package:get/get.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -28,7 +29,7 @@ class _OnboardingState extends State<Onboarding> {
           children: [
             Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     tDefaultSize,
@@ -68,7 +69,7 @@ class _OnboardingState extends State<Onboarding> {
             ),
             Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     tDefaultSize,
@@ -106,7 +107,7 @@ class _OnboardingState extends State<Onboarding> {
             ),
             Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     tDefaultSize,
@@ -163,11 +164,7 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               ),
               onPressed: () async {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const WelcomeScreen(),
-                  ),
-                );
+                Get.off(() => WelcomeScreen(), transition: Transition.fadeIn);
               },
             )
           : Container(

@@ -8,7 +8,15 @@ const String tLoginTitle = "Welcome, Back!";
 const String tLoginSubtitle = "Get started by logging in to your account";
 const String tSignUpTitle = "Sign Up to EduVise";
 const String tSignUpSubtitle = "Enter your email and password to continue";
+const String tFullName = "Full Name";
 const String tEmail = "E-mail";
 const String tPassword = "Password";
+const String tPhoneNo = "Phone No";
 const String tForgetPassword = "Forget Password?";
 const String tDontHaveAccount = "Don't have an account? ";
+const String tHaveAccount = "Already have an account? ";
+const String tForgetPasswordTitle = "Make Selection";
+const String tForgetPasswordSubtitle =
+    "Select one of the options given below to reset your password";
+const String tResetViaEmail = "Reset via Mail Verification";
+const String tResetViaPhone = "Reset via Phone Verification";

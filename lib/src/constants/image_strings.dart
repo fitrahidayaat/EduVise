@@ -5,3 +5,4 @@ const String tOnboarding2 = 'assets/images/onboarding2.png';
 const String tOnboarding3 = 'assets/images/onboarding3.png';
 const String tWelcomeScreen = 'assets/images/welcome_screen.png';
 const String tLogo = 'assets/images/logo.png';
+const String tDataSecurity = 'assets/images/data_security.png';

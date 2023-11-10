@@ -3,18 +3,19 @@ import 'package:eduvise/src/constants/sizes.dart';
 import 'package:eduvise/src/features/authentication/screens/forget_password/forget_password_options/forget_password_modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
+// import google fonts
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginForm extends StatefulWidget {
-  LoginForm({
+class SignupForm extends StatefulWidget {
+  SignupForm({
     super.key,
   });
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<SignupForm> createState() => _SignupFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignupFormState extends State<SignupForm> {
   bool isPasswordVisible = false;
 
   TextEditingController textEditingController = TextEditingController();
@@ -30,6 +31,32 @@ class _LoginFormState extends State<LoginForm> {
             TextFormField(
               decoration: InputDecoration(
                 prefixIcon: Icon(
+                  Icons.person_rounded,
+                  color: tFormColor,
+                ),
+                labelText: tFullName,
+                border: OutlineInputBorder(),
+                labelStyle: GoogleFonts.poppins(
+                  color: tSecondaryColor,
+                  fontSize: 14,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: tSecondaryColor,
+                  ),
+                ),
+              ),
+              style: GoogleFonts.poppins(
+                color: tSecondaryColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+              cursorColor: tFormColor,
+            ),
+            const SizedBox(height: tFormHeight - 20),
+            TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(
                   Icons.email_rounded,
                   color: tFormColor,
                 ),
@@ -38,7 +65,6 @@ class _LoginFormState extends State<LoginForm> {
                 labelStyle: GoogleFonts.poppins(
                   color: tSecondaryColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.normal,
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -77,7 +103,7 @@ class _LoginFormState extends State<LoginForm> {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: tSecondaryColor,
                   ),
@@ -93,15 +119,6 @@ class _LoginFormState extends State<LoginForm> {
               cursorColor: tFormColor,
             ),
             const SizedBox(height: tFormHeight - 20),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  ForgetPasswordScreen.buildShowModalBottomSheet(context);
-                },
-                child: const Text(tForgetPassword),
-              ),
-            ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -110,7 +127,7 @@ class _LoginFormState extends State<LoginForm> {
                   backgroundColor: tSecondaryColor,
                 ),
                 child: Text(
-                  tLogin.toUpperCase(),
+                  tSignUp.toUpperCase(),
                   style: GoogleFonts.poppins(
                     color: tWhiteColor,
                     fontWeight: FontWeight.w500,

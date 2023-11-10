@@ -1,11 +1,11 @@
 import 'package:eduvise/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:eduvise/src/features/authentication/screens/login/login_form_widget.dart';
-import 'package:eduvise/src/features/authentication/screens/login/login_header_widget.dart';
-import 'package:eduvise/src/features/authentication/screens/login/login_footer_widget.dart';
+import 'package:eduvise/src/features/authentication/screens/signup/signup_form_widget.dart';
+import 'package:eduvise/src/features/authentication/screens/signup/signup_header_widget.dart';
+import 'package:eduvise/src/features/authentication/screens/signup/signup_footer_widget.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LoginHeaderWidget(size: size),
-                LoginForm(),
-                const LoginFooterWidget(),
+                SignupHeaderWidget(size: size),
+                SignupForm(),
+                const SignupFooterWidget(),
               ],
             ),
           ),

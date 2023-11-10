@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:eduvise/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:eduvise/src/utils/theme.dart';
 
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      defaultTransition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
       theme: TAppTheme.lightTheme,
       home: const SplashScreen(),
     );

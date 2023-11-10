@@ -1,10 +1,10 @@
+import 'package:eduvise/src/features/authentication/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
-import 'package:eduvise/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:get/get.dart';
 
-class LoginFooterWidget extends StatelessWidget {
-  const LoginFooterWidget({
+class SignupFooterWidget extends StatelessWidget {
+  const SignupFooterWidget({
     super.key,
   });
 
@@ -17,15 +17,15 @@ class LoginFooterWidget extends StatelessWidget {
           width: double.infinity,
           child: TextButton(
             onPressed: () {
-              Get.to(() => SignupScreen(), transition: Transition.native);
+              Get.to(() => LoginScreen(), transition: Transition.native);
             },
             child: Text.rich(
               TextSpan(
-                text: tDontHaveAccount,
+                text: tHaveAccount,
                 style: Theme.of(context).textTheme.bodyMedium,
                 children: const [
                   TextSpan(
-                    text: tSignUp,
+                    text: tLogin,
                     style: TextStyle(
                       color: Colors.blue,
                     ),

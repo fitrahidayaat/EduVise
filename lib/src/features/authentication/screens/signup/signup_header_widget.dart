@@ -3,8 +3,8 @@ import 'package:eduvise/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
 
-class LoginHeaderWidget extends StatelessWidget {
-  const LoginHeaderWidget({
+class SignupHeaderWidget extends StatelessWidget {
+  const SignupHeaderWidget({
     super.key,
     required this.size,
   });
@@ -22,11 +22,11 @@ class LoginHeaderWidget extends StatelessWidget {
         ),
         SizedBox(height: tDefaultSize - 10),
         Text(
-          'Welcome Back,',
+          tSignUpTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         Text(
-          tLoginSubtitle,
+          tSignUpSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
