@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OTPScreen extends StatelessWidget {
+class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
 
+  @override
+  State<OTPScreen> createState() => _OTPScreenState();
+}
+
+class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,16 +38,18 @@ class OTPScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              OtpTextField(
-                numberOfFields: 6,
-                fillColor: Colors.black.withOpacity(0.1),
-                filled: true,
-                onSubmit: (code) {
-                  print("OTP is => $code");
-                },
-                keyboardType: TextInputType.number,
-                cursorColor: tSecondaryColor,
-                focusedBorderColor: tSecondaryColor,
+              Form(
+                child: OtpTextField(
+                  numberOfFields: 6,
+                  fillColor: Colors.black.withOpacity(0.1),
+                  filled: true,
+                  onSubmit: (code) {
+                    print("OTP is => $code");
+                  },
+                  keyboardType: TextInputType.number,
+                  cursorColor: tSecondaryColor,
+                  focusedBorderColor: tSecondaryColor,
+                ),
               ),
               const SizedBox(height: 20),
               SizedBox(

@@ -21,6 +21,7 @@ dependencies:
   get: ^4.6.1           
   get_storage: ^2.0.3  
   flutter_otp_text_field: ^1.1.1
+  form_validator: ">=0.1.1 <2.0.0"
 
 flutter_native_splash:
   color: "#088395"

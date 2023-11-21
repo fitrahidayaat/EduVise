@@ -4,6 +4,7 @@ import 'package:eduvise/src/features/authentication/screens/forget_password/forg
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:form_validator/form_validator.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({
@@ -17,11 +18,18 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   bool isPasswordVisible = false;
 
-  TextEditingController textEditingController = TextEditingController();
+  // TextEditingController textEditingController = TextEditingController();
+
+  GlobalKey<FormState> _form = GlobalKey<FormState>();
+
+  void _validate() {
+    _form.currentState!.validate();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _form,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
         child: Column(
@@ -52,6 +60,7 @@ class _LoginFormState extends State<LoginForm> {
                 fontWeight: FontWeight.normal,
               ),
               cursorColor: tFormColor,
+              validator: ValidationBuilder().email().maxLength(50).build(),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
@@ -91,6 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                 fontWeight: FontWeight.normal,
               ),
               cursorColor: tFormColor,
+              validator: ValidationBuilder().minLength(8).maxLength(50).build(),
             ),
             const SizedBox(height: tFormHeight - 20),
             Align(
@@ -105,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _validate,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: tSecondaryColor,
                 ),
