@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446545002619",
+    "project_id": "eduvise-f3215",
+    "storage_bucket": "eduvise-f3215.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446545002619:android:e4d74a2fa5669dee5fa2de",
+        "android_client_info": {
+          "package_name": "com.example.eduvise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4RsCTbxkYdutevEyoEzc4mTy5AqzYKyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

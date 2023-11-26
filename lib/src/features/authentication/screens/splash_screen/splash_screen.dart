@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/image_strings.dart';
 import 'package:eduvise/src/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -45,11 +46,6 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() => animate = true);
     await Future.delayed(const Duration(milliseconds: 3000));
     //ignore: use_build_context_synchronously
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Onboarding(),
-      ),
-    );
+    Get.to(() => Onboarding());
   }
 }

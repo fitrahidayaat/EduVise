@@ -1,8 +1,11 @@
 import 'package:eduvise/src/constants/colors.dart';
 import 'package:eduvise/src/constants/sizes.dart';
+import 'package:eduvise/src/features/authentication/controllers/signup_controller.dart';
+import 'package:eduvise/src/features/authentication/models/mahasiswa_model.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupForm extends StatefulWidget {
@@ -19,12 +22,9 @@ class _SignupFormState extends State<SignupForm> {
 
   GlobalKey<FormState> _form = GlobalKey<FormState>();
 
-  void _validate() {
-    _form.currentState!.validate();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
     return Form(
       key: _form,
       child: Container(
@@ -33,6 +33,7 @@ class _SignupFormState extends State<SignupForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: controller.fullname,
               validator: ValidationBuilder().maxLength(50).build(),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -60,6 +61,7 @@ class _SignupFormState extends State<SignupForm> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: controller.email,
               validator: ValidationBuilder().email().maxLength(50).build(),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -87,6 +89,35 @@ class _SignupFormState extends State<SignupForm> {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: controller.phoneNo,
+              validator: ValidationBuilder().phone().build(),
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.phone_android_rounded,
+                  color: tFormColor,
+                ),
+                labelText: "Phone No",
+                border: OutlineInputBorder(),
+                labelStyle: GoogleFonts.poppins(
+                  color: tSecondaryColor,
+                  fontSize: 14,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: tSecondaryColor,
+                  ),
+                ),
+              ),
+              style: GoogleFonts.poppins(
+                color: tSecondaryColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+              cursorColor: tFormColor,
+            ),
+            const SizedBox(height: tFormHeight - 20),
+            TextFormField(
+              controller: controller.password,
               validator: ValidationBuilder().minLength(8).maxLength(50).build(),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -129,7 +160,21 @@ class _SignupFormState extends State<SignupForm> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _validate,
+                onPressed: () {
+                  if (_form.currentState!.validate()) {
+                    final mahasiswa = MahasiswaModel(
+                      fullName: controller.fullname.text.trim(),
+                      email: controller.email.text.trim(),
+                      phoneNo: controller.phoneNo.text.trim(),
+                      password: controller.password.text.trim(),
+                    );
+                    SignUpController.instance.registerUser(
+                      controller.email.text.trim(),
+                      controller.password.text.trim(),
+                    );
+                    // SignUpController.instance.createMahasiswa(mahasiswa);
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: tSecondaryColor,
                 ),

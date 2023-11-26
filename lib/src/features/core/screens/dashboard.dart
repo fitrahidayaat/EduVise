@@ -1,7 +1,9 @@
+import 'package:eduvise/src/constants/colors.dart';
 import 'package:eduvise/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:eduvise/src/features/core/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/onboarding.dart';
+import 'package:eduvise/src/features/core/screens/home.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -13,8 +15,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Text("tes"),
-    Text('To-Do List Page'),
+    Home(),
     Text('Forum Page'),
     Profile(),
   ];
@@ -34,15 +35,11 @@ class _DashboardState extends State<Dashboard> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey[500],
-          selectedItemColor: Colors.blue,
+          selectedItemColor: tPrimaryColor,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat_rounded),
-              label: 'Chatbot',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.checklist_rounded),
-              label: 'To-Do List',
+              icon: Icon(Icons.home),
+              label: 'home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.forum_rounded),

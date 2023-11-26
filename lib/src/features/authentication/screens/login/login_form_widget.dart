@@ -1,8 +1,12 @@
 import 'package:eduvise/src/constants/colors.dart';
 import 'package:eduvise/src/constants/sizes.dart';
+import 'package:eduvise/src/features/authentication/controllers/login_controller.dart';
+import 'package:eduvise/src/features/authentication/controllers/signup_controller.dart';
 import 'package:eduvise/src/features/authentication/screens/forget_password/forget_password_options/forget_password_modal_bottom_sheet.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:form_validator/form_validator.dart';
 
@@ -28,6 +32,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Form(
       key: _form,
       child: Container(
@@ -61,6 +66,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               cursorColor: tFormColor,
               validator: ValidationBuilder().email().maxLength(50).build(),
+              controller: controller.email,
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
@@ -101,6 +107,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               cursorColor: tFormColor,
               validator: ValidationBuilder().minLength(8).maxLength(50).build(),
+              controller: controller.password,
             ),
             const SizedBox(height: tFormHeight - 20),
             Align(
@@ -115,7 +122,11 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _validate,
+                onPressed: () {
+                  if (_form.currentState!.validate()) {
+                    controller.login();
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: tSecondaryColor,
                 ),
