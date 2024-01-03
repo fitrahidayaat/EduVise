@@ -1,14 +1,15 @@
 import 'package:eduvise/firebase_options.dart';
 import 'package:eduvise/src/features/core/providers/chats_provider.dart';
-import 'package:eduvise/src/features/core/screens/dashboard.dart';
+import 'package:eduvise/src/features/core/providers/profile_provider.dart';
+import 'package:eduvise/src/features/core/providers/todolist_provider.dart';
 import 'package:eduvise/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:eduvise/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:eduvise/src/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:eduvise/src/features/core/providers/models_provider.dart';
+import 'package:eduvise/src/features/core/providers/forum_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,13 +31,25 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ChatProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ForumProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ToDoListProvider(),
+        )
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        defaultTransition: Transition.leftToRightWithFade,
+        defaultTransition: Transition.native,
         transitionDuration: const Duration(milliseconds: 500),
         theme: TAppTheme.lightTheme,
-        home: const CircularProgressIndicator(),
+        home: const LinearProgressIndicator(
+          backgroundColor: Colors.white,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
       ),
     );
   }

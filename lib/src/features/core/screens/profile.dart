@@ -1,58 +1,54 @@
 import 'package:eduvise/src/constants/colors.dart';
-import 'package:eduvise/src/constants/text_strings.dart';
-import 'package:eduvise/src/features/authentication/controllers/signup_controller.dart';
-import 'package:eduvise/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:eduvise/src/features/core/providers/profile_provider.dart';
+import 'package:eduvise/src/features/core/widgets/profile_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Profile extends StatefulWidget {
+import 'package:provider/provider.dart';
+
+class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  GlobalKey<FormState> _form = GlobalKey<FormState>();
-  @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SignUpController());
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('assets/images/profile_picture.png'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Profile",
+          style: GoogleFonts.poppins(
+            color: tSecondaryColor,
+            fontWeight: FontWeight.w600,
           ),
-          SizedBox(height: 20),
-          Text(
-            "tes",
-            style: GoogleFonts.poppins(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                AuthenticationRepository.instance.logout();
+        ),
+        backgroundColor: Colors.white,
+        // elevation: 0,
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Provider.of<ProfileProvider>(context, listen: false)
+              .fetchData(FirebaseAuth.instance.currentUser!.uid);
+          await Provider.of<ProfileProvider>(context, listen: false).getImage();
+        },
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Consumer<ProfileProvider>(
+              builder: (context, profileProvider, child) {
+                if (profileProvider.userData == null ||
+                    profileProvider.profilePicture == null) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                    child: CircularProgressIndicator(color: tPrimaryColor),
+                  );
+                } else {
+                  return ProfileWidget(data: profileProvider.userData);
+                }
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: tSecondaryColor,
-              ),
-              child: Text(
-                "SIGN OUT",
-                style: GoogleFonts.poppins(
-                  color: tWhiteColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

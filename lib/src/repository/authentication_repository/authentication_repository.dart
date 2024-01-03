@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:eduvise/src/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:eduvise/src/features/authentication/screens/welcome/welcome_screen.dart';
@@ -6,7 +9,7 @@ import 'package:eduvise/src/repository/authentication_repository/exceptions/logi
 import 'package:eduvise/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
 
 class AuthenticationRepository extends GetxController {
-  var verficationid;
+  dynamic verficationid;
 
   static AuthenticationRepository get instance => Get.find();
 
@@ -26,7 +29,7 @@ class AuthenticationRepository extends GetxController {
   /// then in the main.dart => App() add CircularProgressIndicator()
   _setInitialScreen(User? user) {
     user == null
-        ? Get.offAll(() => const WelcomeScreen())
+        ? Get.offAll(() => const Onboarding())
         : Get.offAll(() => const Dashboard());
   }
 
@@ -37,14 +40,14 @@ class AuthenticationRepository extends GetxController {
         await _auth.signInWithCredential(credential);
       },
       codeSent: ((verificationId, forceResendingToken) {
-        this.verficationid.value = verificationId;
+        verficationid.value = verificationId;
       }),
       codeAutoRetrievalTimeout: (verficationid) {
         this.verficationid.value = verficationid;
       },
       verificationFailed: (e) {
         if (e.code == 'invalid-phone-number') {
-          print('The provided phone number is not valid.');
+          log('The provided phone number is not valid.');
         }
       },
     );
@@ -81,8 +84,8 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      print(email);
-      print(password);
+      log(email);
+      log(password);
 
       final ex = LogInWithEmailAndPasswordFailure.code(e.code);
       return ex.message;

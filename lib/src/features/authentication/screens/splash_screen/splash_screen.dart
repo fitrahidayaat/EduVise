@@ -28,11 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: AnimatedOpacity(
               opacity: animate ? 1 : 0,
               duration: const Duration(
-                milliseconds: 1600,
-              ),
-              child: const Image(
-                image: AssetImage(tSplashImage),
-                width: 200,
+                milliseconds: 3000,
               ),
             ),
           ),
@@ -46,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() => animate = true);
     await Future.delayed(const Duration(milliseconds: 3000));
     //ignore: use_build_context_synchronously
-    Get.to(() => Onboarding());
+
+    Get.to(() => const Onboarding());
   }
 }

@@ -20,7 +20,7 @@ class SignupHeaderWidget extends StatelessWidget {
           image: const AssetImage(tLogo),
           height: size.height * 0.18,
         ),
-        SizedBox(height: tDefaultSize - 10),
+        const SizedBox(height: tDefaultSize - 10),
         Text(
           tSignUpTitle,
           style: Theme.of(context).textTheme.titleMedium,

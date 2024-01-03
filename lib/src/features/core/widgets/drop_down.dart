@@ -1,7 +1,5 @@
-import 'package:eduvise/src/constants/constants.dart';
 import 'package:eduvise/src/features/core/models/models_model.dart';
 import 'package:eduvise/src/features/core/providers/models_provider.dart';
-import 'package:eduvise/src/features/core/screens/services/api_service.dart';
 import 'package:eduvise/src/features/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

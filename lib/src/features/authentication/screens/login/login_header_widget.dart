@@ -20,7 +20,7 @@ class LoginHeaderWidget extends StatelessWidget {
           image: const AssetImage(tLogo),
           height: size.height * 0.18,
         ),
-        SizedBox(height: tDefaultSize - 10),
+        const SizedBox(height: tDefaultSize - 10),
         Text(
           'Welcome Back,',
           style: Theme.of(context).textTheme.titleMedium,

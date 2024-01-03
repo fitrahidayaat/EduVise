@@ -1,5 +1,36 @@
-import 'package:eduvise/src/features/core/widgets/text_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:eduvise/src/features/core/models/thread.dart';
+
+final threads = [
+  // generate 10 unique threads
+
+  Thread(
+    name: "Muhammad Ramdhan Fitra Hidayat",
+    description: "bebek apa yang kakinya 2?",
+    image: "assets/images/profile_picture.png",
+    depth: 1,
+    index: 0,
+    likes: 0,
+    dislikes: 0,
+  ),
+  Thread(
+    name: "John Doe",
+    description: "forum ini ramah sekali",
+    image: "assets/images/john.png",
+    depth: 1,
+    index: 0,
+    likes: 0,
+    dislikes: 0,
+  ),
+  Thread(
+    name: "Charlie",
+    description: "Tak sabar untuk libur",
+    image: "assets/images/charlie.png",
+    depth: 1,
+    index: 0,
+    likes: 0,
+    dislikes: 0,
+  ),
+];
 
 // final chatMessages = [
 //   {

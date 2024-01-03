@@ -1,9 +1,6 @@
 import 'package:eduvise/src/constants/colors.dart';
 import 'package:eduvise/src/constants/sizes.dart';
 import 'package:eduvise/src/features/authentication/controllers/login_controller.dart';
-import 'package:eduvise/src/features/authentication/controllers/signup_controller.dart';
-import 'package:eduvise/src/features/authentication/screens/forget_password/forget_password_options/forget_password_modal_bottom_sheet.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:eduvise/src/constants/text_strings.dart';
 import 'package:get/get.dart';
@@ -11,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:form_validator/form_validator.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({
+  const LoginForm({
     super.key,
   });
 
@@ -24,11 +21,7 @@ class _LoginFormState extends State<LoginForm> {
 
   // TextEditingController textEditingController = TextEditingController();
 
-  GlobalKey<FormState> _form = GlobalKey<FormState>();
-
-  void _validate() {
-    _form.currentState!.validate();
-  }
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +35,18 @@ class _LoginFormState extends State<LoginForm> {
           children: [
             TextFormField(
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.email_rounded,
                   color: tFormColor,
                 ),
                 labelText: tEmail,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 labelStyle: GoogleFonts.poppins(
                   color: tSecondaryColor,
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: tSecondaryColor,
                   ),
@@ -71,12 +64,12 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.lock_rounded,
                   color: tFormColor,
                 ),
                 labelText: tPassword,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -92,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: tSecondaryColor,
                   ),
@@ -110,15 +103,6 @@ class _LoginFormState extends State<LoginForm> {
               controller: controller.password,
             ),
             const SizedBox(height: tFormHeight - 20),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  ForgetPasswordScreen.buildShowModalBottomSheet(context);
-                },
-                child: const Text(tForgetPassword),
-              ),
-            ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(

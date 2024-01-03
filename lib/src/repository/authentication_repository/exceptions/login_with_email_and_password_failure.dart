@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class LogInWithEmailAndPasswordFailure {
   final String message;
 
@@ -7,12 +5,18 @@ class LogInWithEmailAndPasswordFailure {
       [this.message = "An unknown error occurred"]);
 
   factory LogInWithEmailAndPasswordFailure.code(String code) {
-    log("code $code");
     switch (code) {
       case 'invalid-credential':
-        return LogInWithEmailAndPasswordFailure('invalid-credential');
+        return const LogInWithEmailAndPasswordFailure('invalid-credential');
+      case 'user-disabled':
+        return const LogInWithEmailAndPasswordFailure('user-disabled');
+      case 'user-not-found':
+        return const LogInWithEmailAndPasswordFailure('user-not-found');
+      case 'wrong-password':
+        return const LogInWithEmailAndPasswordFailure('wrong-password');
       default:
-        return LogInWithEmailAndPasswordFailure();
+        return const LogInWithEmailAndPasswordFailure(
+            'An unknown error occurred');
     }
   }
 }

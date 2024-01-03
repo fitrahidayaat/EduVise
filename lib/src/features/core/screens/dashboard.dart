@@ -1,8 +1,7 @@
 import 'package:eduvise/src/constants/colors.dart';
-import 'package:eduvise/src/features/authentication/screens/splash_screen/splash_screen.dart';
+import 'package:eduvise/src/features/core/screens/forum_screen.dart';
 import 'package:eduvise/src/features/core/screens/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:onboarding/onboarding.dart';
 import 'package:eduvise/src/features/core/screens/home.dart';
 
 class Dashboard extends StatefulWidget {
@@ -14,10 +13,11 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Text('Forum Page'),
-    Profile(),
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Home(),
+    const Forum(),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,12 +34,13 @@ class _DashboardState extends State<Dashboard> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           unselectedItemColor: Colors.grey[500],
           selectedItemColor: tPrimaryColor,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'home',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.forum_rounded),

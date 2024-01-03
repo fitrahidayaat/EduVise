@@ -1,4 +1,5 @@
-import 'package:eduvise/src/repository/authentication_repository/authentication_repository.dart';
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,15 +14,13 @@ class LoginController extends GetxController {
 
   //Call this Function from Design & it will do the rest
   Future<void> login() async {
-    String? error = await AuthenticationRepository.instance
-        .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
-    print(email.text.trim());
-    print(password.text.trim());
-    if (error != null) {
-      Get.showSnackbar(GetSnackBar(
-        message: error.toString(),
-        duration: Duration(seconds: 5),
-      ));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar('Error', e.code.toString(),
+          snackPosition: SnackPosition.BOTTOM);
+      log('An error occurred: ${e.code}');
     }
   }
 }

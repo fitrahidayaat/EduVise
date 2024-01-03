@@ -6,6 +6,7 @@ import 'package:eduvise/src/constants/text_strings.dart';
 import 'package:eduvise/src/features/authentication/screens/login/login_screen.dart';
 import 'package:eduvise/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -45,7 +46,6 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () {
                         Get.to(
                           () => const LoginScreen(),
-                          transition: Transition.native,
                         );
                       },
                       style: OutlinedButton.styleFrom(
@@ -58,6 +58,10 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       child: Text(
                         tLogin.toUpperCase(),
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
@@ -67,7 +71,6 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () {
                         Get.to(
                           () => const SignupScreen(),
-                          transition: Transition.native,
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -82,6 +85,10 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       child: Text(
                         tSignUp.toUpperCase(),
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),

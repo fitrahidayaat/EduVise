@@ -1,4 +1,4 @@
-import 'package:eduvise/src/constants/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,14 +19,16 @@ class ChatWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  chatIndex == 0
-                      ? 'assets/images/person.png'
-                      : 'assets/images/logo.png',
-                  height: 30,
-                  width: 30,
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    chatIndex == 0
+                        ? FirebaseAuth.instance.currentUser!.photoURL!
+                        : 'https://firebasestorage.googleapis.com/v0/b/eduvise-f3215.appspot.com/o/bot.png?alt=media&token=e0d07d46-feec-4248-88d6-d25f67f22eef',
+                  ),
+                  backgroundColor: Colors.white,
+                  radius: 15,
                 ),
                 const SizedBox(
                   width: 8,
@@ -54,23 +56,7 @@ class ChatWidget extends StatelessWidget {
                           ),
                         ),
                 ),
-                chatIndex == 0
-                    ? const SizedBox.shrink()
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.thumb_up_alt_outlined,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(Icons.thumb_down_alt_outlined,
-                              color: Colors.black)
-                        ],
-                      ),
+                const SizedBox.shrink(),
               ],
             ),
           ),

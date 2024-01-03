@@ -1,20 +1,19 @@
 import 'dart:developer';
 
 import 'package:eduvise/src/constants/colors.dart';
-import 'package:eduvise/src/constants/constants.dart';
-import 'package:eduvise/src/features/core/models/chat_model.dart';
 import 'package:eduvise/src/features/core/providers/chats_provider.dart';
 import 'package:eduvise/src/features/core/providers/models_provider.dart';
-import 'package:eduvise/src/features/core/screens/services/api_service.dart';
 import 'package:eduvise/src/features/core/screens/services/services.dart';
 import 'package:eduvise/src/features/core/widgets/chat_widget.dart';
 import 'package:eduvise/src/features/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  const ChatScreen({super.key, required this.written});
+  final bool written;
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -22,7 +21,6 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   bool _isTyping = false;
-
   late TextEditingController textEditingController;
   late FocusNode focusNode;
   late ScrollController _listScrollController;
@@ -48,89 +46,97 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context);
     final chatsProvider = Provider.of<ChatProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: tPrimaryColor,
-        elevation: 2,
-        title: const Text("EduBot"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Services.showModalSheet(context: context);
-            },
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.white),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 2,
+          title: Text(
+            "EduBot",
+            style: GoogleFonts.poppins(color: tSecondaryColor),
           ),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: ListView.builder(
-                  controller: _listScrollController,
-                  itemCount: chatsProvider.getChatList.length,
-                  itemBuilder: (context, index) {
-                    return ChatWidget(
-                      msg: chatsProvider.getChatList[index].msg,
-                      chatIndex: chatsProvider.getChatList[index].chatIndex,
-                    );
-                  }),
+          iconTheme: const IconThemeData(color: tSecondaryColor),
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await Services.showModalSheet(context: context);
+              },
+              icon: const Icon(Icons.more_vert_rounded, color: tSecondaryColor),
             ),
-            if (_isTyping) ...[
-              const SpinKitThreeBounce(
-                color: Colors.grey,
-                size: 18,
+          ],
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Flexible(
+                child: ListView.builder(
+                    controller: _listScrollController,
+                    itemCount: chatsProvider.getChatList.length,
+                    itemBuilder: (context, index) {
+                      return ChatWidget(
+                        msg: chatsProvider.getChatList[index].msg,
+                        chatIndex: chatsProvider.getChatList[index].chatIndex,
+                      );
+                    }),
               ),
-            ],
-            SizedBox(
-              height: 15,
-            ),
-            Material(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        style: const TextStyle(
-                          color: Colors.black54,
-                          fontSize: 16,
+              if (_isTyping) ...[
+                const SpinKitThreeBounce(
+                  color: Colors.grey,
+                  size: 18,
+                ),
+              ],
+              const SizedBox(
+                height: 15,
+              ),
+              Material(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          focusNode: focusNode,
+                          style: const TextStyle(
+                            color: Colors.black54,
+                            fontSize: 16,
+                          ),
+                          controller: textEditingController,
+                          onSubmitted: (value) async {
+                            await sendMessageFCT(
+                              modelsProvider: modelsProvider,
+                              chatProvider: chatsProvider,
+                            );
+                          },
+                          decoration: const InputDecoration.collapsed(
+                            hintText: "Message Edubot...",
+                            hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 197, 197, 197),
+                              // fontWeight: FontWeight.w500,
+                              fontSize: 13,
+                            ),
+                            // hintStyle: GoogleFonts.poppins()
+                          ),
                         ),
-                        controller: textEditingController,
-                        onSubmitted: (value) async {
+                      ),
+                      IconButton(
+                        onPressed: () async {
                           await sendMessageFCT(
                             modelsProvider: modelsProvider,
                             chatProvider: chatsProvider,
                           );
                         },
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "Message Edubot...",
-                            hintStyle: TextStyle(
-                              color: Color.fromARGB(255, 197, 197, 197),
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                            )),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        await sendMessageFCT(
-                          modelsProvider: modelsProvider,
-                          chatProvider: chatsProvider,
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.send,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
+                        icon: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -139,7 +145,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void scrollListToEnd() {
     _listScrollController.animateTo(
       _listScrollController.position.maxScrollExtent,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       curve: Curves.easeOut,
     );
   }
